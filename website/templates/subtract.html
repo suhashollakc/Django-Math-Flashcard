@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+    
+    {% block 'content' %}
+    <center>
+        {% if my_answer %}
+        <div class="alert alert-{{color}} alert-dismissible fade show" role="alert">
+            <h2> {{ my_answer }}</h2>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+
+        
+        <h1> <img src="static/images/{{ num_1 }}.png" alt="" height="300px">  -  <img src="static/images/{{ num_2 }}.png" alt="" height="300px"></h1>
+  
+   
+    <form action="{% url 'subtract' %}" method = "POST">
+        {% csrf_token%}
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Enter Answer" name="answer">
+          <input type="hidden" name="old_num_1" value="{{ num_1 }}">
+          <input type="hidden" name="old_num_2" value=" 
+          {{ num_2 }}">
+         
+        </div>
+        <button type="submit" class="btn btn-secondary">Check</button>
+      </form>
+    </center>
+    {% endblock %}
+
